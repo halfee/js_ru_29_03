@@ -5,8 +5,8 @@ class Article extends Component {
 
     state = {
         isOpen: false,
-        showComments: false,
-    }
+        showComments: false
+    };
 
     render() {
         const title = this.props.article.title;
@@ -31,6 +31,9 @@ class Article extends Component {
     }
 
     renderComments() {
+        if (this.props.article.comments == null)
+            return;
+
         const linkText = this.state.showComments ? "Скрыть комментарии" : "Показать комментарии";
         return(
             <div>

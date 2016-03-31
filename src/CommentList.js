@@ -13,6 +13,9 @@ class CommentList extends Component {
     };
     
     getCommentList(){
+        if (this.props.comments == null)
+            return;
+
         return this.props.comments.map((comment) =>
             <li key={comment.id}>
                 <Comment comment={comment} />
