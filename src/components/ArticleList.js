@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
+import toggleSingleOpen from '../HOC/toggleSingleOpen'
 
 class AricleList extends Component {
     state = {
-        selectedArticles: []
+        selectedArticles: [],
     }
 
     render() {
@@ -20,9 +21,11 @@ class AricleList extends Component {
         return this.props.articles.map((article, index) =>
             <li key={article.id}>
                 <Article
+                    isOpen = {this.props.openEntityId == article.id}
                     article = {article}
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
+                    onOpen = {this.props.onOpen}
                 />
             </li>
         )
@@ -35,4 +38,4 @@ class AricleList extends Component {
     }
 }
 
-export default AricleList
+export default toggleSingleOpen(AricleList)

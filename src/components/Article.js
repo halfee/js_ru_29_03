@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
-import toggleOpen from '../HOC/toggleOpen'
 
 class Article extends Component {
 
@@ -41,8 +40,8 @@ class Article extends Component {
     }
 
     handleClick = (ev) => {
-        this.props.toggleOpen()
+        this.props.onOpen(this.props.article.id);
     }
 }
 
-export default toggleOpen(Article)
+export default Article
