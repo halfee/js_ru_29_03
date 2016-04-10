@@ -50,13 +50,10 @@ class Article extends Component {
             </section>
         )
     }
-<<<<<<< HEAD
 
     handleClick = (ev) => {
         this.props.onOpen(this.props.article.id);
     }
-=======
->>>>>>> romabelka/master
 }
 
 export default Article

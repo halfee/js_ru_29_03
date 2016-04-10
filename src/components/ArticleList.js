@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Article from './Article'
-<<<<<<< HEAD
-import toggleSingleOpen from '../HOC/toggleSingleOpen'
-=======
 import singleOpen from '../HOC/singleOpen'
->>>>>>> romabelka/master
 
 class AricleList extends Component {
     state = {
@@ -51,8 +47,4 @@ class AricleList extends Component {
     }
 }
 
-<<<<<<< HEAD
-export default toggleSingleOpen(AricleList)
-=======
 export default singleOpen(AricleList)
->>>>>>> romabelka/master
