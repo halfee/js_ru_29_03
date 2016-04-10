@@ -1,39 +1,30 @@
 import React, { Component, PropTypes } from 'react'
 import { articleStore } from '../stores'
 import ArticleList from './../components/ArticleList'
-import { deleteArticle } from '../AC/articles'
+import { deleteArticle, loadAllArticles } from '../AC/articles'
+import connectToStore from '../HOC/connectToStore'
 
 class AppContainer extends Component {
     static propTypes = {
-
+        articles: PropTypes.array.isRequired
     };
 
-    constructor() {
-        super()
-        this.state = this.getState()
-    }
-
-    getState() {
-        return {
-            articles: articleStore.getAll()
-        }
-    }
-
     componentDidMount() {
-        articleStore.addChangeListener(this.changeArticles)
-    }
-
-    componentWillUnmount() {
-        articleStore.removeChangeListener(this.changeArticles)
-    }
-
-    changeArticles = () => {
-        this.setState(this.getState())
+        loadAllArticles()
     }
 
     render() {
-        return <ArticleList articles = {this.state.articles} deleteArticle = {deleteArticle}/>
+        const { articles, loading } = this.props
+        if (loading) return <h1>Loading...</h1>
+        return <ArticleList articles = {articles} deleteArticle = {deleteArticle}/>
     }
 }
 
-export default AppContainer
+function getState(stores) {
+    return {
+        articles: stores.articles.getAll(),
+        loading: stores.articles.loading
+    }
+}
+
+export default connectToStore(['articles'], getState)(AppContainer)
