@@ -14,7 +14,8 @@ class Article extends Component {
     }
 
     componentWillReceiveProps(props)
-    {
+    {   
+        //кроме этого советую проверить && !this.props.isOpen иначе может привести к множественным запросам
         if (props.article.text == null && props.isOpen){
             loadArticle(props.article.id)
         }
