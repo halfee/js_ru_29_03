@@ -16,6 +16,7 @@ class AppContainer extends Component {
     render() {
         const { articles, loading } = this.props
         //if (loading) return <h1>Loading...</h1>
+        //Ну здесь же тоже нужен лоадер, просто сделайте флажок loading на статье, а не на всем сторе
         return <ArticleList articles = {articles} loading={loading} deleteArticle = {deleteArticle}/>
     }
 }
