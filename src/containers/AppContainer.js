@@ -15,8 +15,8 @@ class AppContainer extends Component {
 
     render() {
         const { articles, loading } = this.props
-        if (loading) return <h1>Loading...</h1>
-        return <ArticleList articles = {articles} deleteArticle = {deleteArticle}/>
+        //if (loading) return <h1>Loading...</h1>
+        return <ArticleList articles = {articles} loading={loading} deleteArticle = {deleteArticle}/>
     }
 }
 

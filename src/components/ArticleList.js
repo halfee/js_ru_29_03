@@ -38,6 +38,7 @@ class AricleList extends Component {
                     selectArticle = {this.selectArticle}
                     loadArticle = {this.props.loadArticle}
                     onOpen = {this.props.onOpen}
+                    loading={this.props.loading}
                 />
             </li>
         )

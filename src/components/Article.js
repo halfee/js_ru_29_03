@@ -9,7 +9,8 @@ class Article extends Component {
         selectArticle: PropTypes.func.isRequired,
         isSelected: PropTypes.bool,
         openItem: PropTypes.func.isRequired,
-        deleteArticle: PropTypes.func.isRequired
+        deleteArticle: PropTypes.func.isRequired,
+        loading: PropTypes.bool
     }
 
     componentWillReceiveProps(props)
@@ -20,8 +21,10 @@ class Article extends Component {
     }
 
     render() {
-        const { article: { title }, isSelected, openItem, deleteArticle } = this.props
+        const { article: { title }, isSelected, openItem, loading } = this.props
         const style = isSelected ? {color: 'red'} : null
+        if (loading) return <h1>Loading...</h1>
+
         return (
             <div ref = "articleContainer">
                 <h3 onClick = {openItem} style = {style}>{title}</h3>
