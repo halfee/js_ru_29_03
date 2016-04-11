@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
+import loadArticle from '../AC/articles'
 
 class Article extends Component {
     static propTypes = {
@@ -10,6 +11,14 @@ class Article extends Component {
         openItem: PropTypes.func.isRequired,
         deleteArticle: PropTypes.func.isRequired
     }
+
+    componentWillReceiveProps(props)
+    {
+        if (props.article.text == null && props.isOpen){
+            loadArticle(props.article.id)
+        }
+    }
+
     render() {
         const { article: { title }, isSelected, openItem, deleteArticle } = this.props
         const style = isSelected ? {color: 'red'} : null
@@ -29,10 +38,10 @@ class Article extends Component {
     }
 
     componentDidMount() {
-/*
-        console.log('---', this.refs);
-        console.log('---', 'commentList: ', this.refs.commentList, findDOMNode(this.refs.commentList));
-*/
+        /*
+         console.log('---', this.refs);
+         console.log('---', 'commentList: ', this.refs.commentList, findDOMNode(this.refs.commentList));
+         */
     }
 
     handleSelect = (ev) => {
@@ -49,10 +58,6 @@ class Article extends Component {
                 <CommentList article = {article} ref = "commentList" />
             </section>
         )
-    }
-
-    handleClick = (ev) => {
-        this.props.onOpen(this.props.article.id);
     }
 }
 

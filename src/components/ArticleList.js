@@ -13,6 +13,8 @@ class AricleList extends Component {
     }
 
     render() {
+        if (this.props.loading) return <h1>Loading...</h1>
+
         return (
             <div>
                 <ul>
@@ -34,6 +36,7 @@ class AricleList extends Component {
                     deleteArticle = {this.props.deleteArticle}
                     isSelected = {this.state.selectedArticles.includes(article.id)}
                     selectArticle = {this.selectArticle}
+                    loadArticle = {this.props.loadArticle}
                     onOpen = {this.props.onOpen}
                 />
             </li>
