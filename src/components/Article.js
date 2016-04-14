@@ -1,30 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
-<<<<<<< HEAD
-import loadArticle from '../AC/articles'
-=======
 import { loadArticleById } from '../AC/articles'
->>>>>>> romabelka/master
 
 class Article extends Component {
     static propTypes = {
         article: PropTypes.object.isRequired,
         selectArticle: PropTypes.func,
         isSelected: PropTypes.bool,
-<<<<<<< HEAD
-        openItem: PropTypes.func.isRequired,
-        deleteArticle: PropTypes.func.isRequired,
-        loading: PropTypes.bool
-    }
-
-    componentWillReceiveProps(props)
-    {   
-        //кроме этого советую проверить && !this.props.isOpen иначе может привести к множественным запросам
-        if (props.article.text == null && props.isOpen){
-            loadArticle(props.article.id)
-        }
-=======
         isOpen: PropTypes.bool.isRequired,
         openItem: PropTypes.func,
         deleteArticle: PropTypes.func.isRequired,
@@ -35,7 +18,6 @@ class Article extends Component {
         const { article, isOpen, ignoreLoading } = nextProps
         if (ignoreLoading) return
         if (isOpen && !this.props.isOpen && !article.text) loadArticleById({id: article.id})
->>>>>>> romabelka/master
     }
 
     render() {
