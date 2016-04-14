@@ -1,5 +1,11 @@
 import React from 'react'
 import { render } from 'react-dom'
+<<<<<<< HEAD
 import AppContainer from './containers/AppContainer'
+=======
+//import AppContainer from './containers/AppContainer'
+//import { articles } from './fixtures'
+import routes from './routes'
+>>>>>>> romabelka/master
 
-render(<AppContainer />, document.getElementById('container'))
+render(routes, document.getElementById('container'))
