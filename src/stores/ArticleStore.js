@@ -7,7 +7,7 @@ class ArticleStore extends SimpleStore {
     constructor(...args) {
         super(...args)
 
-        AppDispatcher.register((action) => {
+        this.dispatchToken = AppDispatcher.register((action) => {
             const { type, data, response } = action
             let article
 
@@ -17,6 +17,7 @@ class ArticleStore extends SimpleStore {
                     break
 
                 case ADD_COMMENT:
+                    AppDispatcher.waitFor([this.getStore('comment').dispatchToken])
                     article = this.getById(data.articleId)
                     article.comments = (article.comments || []).concat(data.id)
                     break
@@ -26,7 +27,7 @@ class ArticleStore extends SimpleStore {
                     break
 
                 case LOAD_ALL_ARTICLES + SUCCESS:
-                    response.forEach(this.__add)
+                    response.forEach(this.__update)
                     this.loading = false
                     break;
 
@@ -35,8 +36,7 @@ class ArticleStore extends SimpleStore {
                     break;
 
                 case LOAD_ARTICLE_BY_ID + START:
-                    if (!this.getById(data.id)) this.__add(data)
-                    this.getById(data.id).loading = true
+                    this.__update({...data, loading: true})
                     break;
 
                 case LOAD_ARTICLE_BY_ID + SUCCESS:
