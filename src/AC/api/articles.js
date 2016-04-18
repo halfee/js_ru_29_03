@@ -4,6 +4,6 @@ export function loadAll() {
     return $.get('/api/article')
 }
 
-export function loadArticleById(id) {
-    return $.get('/api/article/' + id)
+export function loadById(data) {
+    return $.get('/api/article/' + data.id)
 }
