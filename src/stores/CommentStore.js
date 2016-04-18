@@ -7,6 +7,7 @@ class CommentStore extends SimpleStore {
     constructor(...args) {
         super(...args)
         this.pagination = {}
+        //почему this.articles ?
         this.articles = {}
 
         this.dispatchToken = AppDispatcher.register((action) => {
@@ -35,6 +36,7 @@ class CommentStore extends SimpleStore {
                     break
 
                 case LOAD_COMMENTS_FOR_ARTICLE + SUCCESS:
+                    //это лишнее - id комментов для статьи у нас хранятся в статье
                     this.articles[data.articleId] = response.map(comment => comment.id)
                     response.forEach(this.__add)
                     break;
