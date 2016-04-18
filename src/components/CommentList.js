@@ -33,6 +33,7 @@ class CommentList extends Component {
         if (!isOpen) return null
 
         // комменты еще не получены из  api, что делать?
+        // вы не оповещаете вью про то, что комменты пришли. Нужно или подписаться на коммент-стор, или делать emitChange() в articleStore
         const comments = article.getRelation('comments')
         const commentItems = comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>)
         return <ul>
