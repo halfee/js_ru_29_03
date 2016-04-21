@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import CommentList from './CommentList'
 import { findDOMNode } from 'react-dom'
-import { loadArticleById } from '../AC/articles'
 
 class Article extends Component {
     static propTypes = {
@@ -26,7 +25,7 @@ class Article extends Component {
     }
 
     render() {
-        const { article: { title }, isSelected, openItem, deleteArticle } = this.props
+        const { article: { title }, openItem } = this.props
         const { style } = this.context
         return (
             <div ref = "articleContainer">
@@ -48,18 +47,6 @@ class Article extends Component {
         this.props.deleteArticle(this.props.article.id)
     }
 
-    componentDidMount() {
-/*
-        console.log('---', this.refs);
-        console.log('---', 'commentList: ', this.refs.commentList, findDOMNode(this.refs.commentList));
-*/
-    }
-
-    handleSelect = (ev) => {
-        const { article: {id}, selectArticle } = this.props
-        if (selectArticle) selectArticle(id)
-    }
-
     getBody() {
         if (!this.props.isOpen) return null
         const { article } = this.props
@@ -74,3 +61,4 @@ class Article extends Component {
 }
 
 export default Article
+

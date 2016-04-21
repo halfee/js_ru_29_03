@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import Comment from './Comment/index.js'
 import toggleOpen from '../HOC/toggleOpen'
-import { addComment } from '../AC/comments'
 
 class CommentList extends Component {
     state = {
@@ -24,11 +23,11 @@ class CommentList extends Component {
 
     getBody() {
         const { article, isOpen } = this.props
-        const comments = article.getRelation('comments')
+        const comments = article.comments
         if (!isOpen || !comments) return null
-        const commetItems = comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>)
+        const commentItems = comments.map(comment => <li key={comment.id}><Comment comment = {comment}/></li>)
         return <ul>
-                {commetItems}
+                {commentItems}
                 <li>{this.getCommentInput()}</li>
             </ul>
     }
